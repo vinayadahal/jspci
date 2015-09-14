@@ -683,7 +683,7 @@ body{
     width: 600px;
 }
 
-.closeImage{
+.closeImage,.closeForm{
     position: absolute;
     right: 5px;
     top: 5px;
@@ -694,8 +694,50 @@ body{
     background-position: -95px -127px;
 }
 
-.closeImage:hover{
+.closeImage:hover,.closeForm:hover{
     background-image: url(images/ui-icons_222222_256x240.png);
     background-position: -95px -127px;
     cursor: pointer;
+}
+
+.closeForm{
+    background-image: url(images/ui-icons_222222_256x240.png);
+}
+
+.closeForm:hover{
+    background-image: url(images/ui-icons_2e83ff_256x240.png);
+}
+
+.wrapForm{
+    height: 500px;
+    width: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.feedsBg{
+    /*height: 600px;*/
+    /*width: 510px;*/
+    position: fixed;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    background: #fff;
+}
+
+.txtReview{
+    width: 100%;
+    padding: 3px;
+}
+
+.txtAreaReview{
+    width: 100%;
+    height: 300px;
+    resize: none;
+    font-size: 12px;
+}
+
+#loading,#success,#sendError{
+    display:none;
+    margin:150px auto 0px auto
 }

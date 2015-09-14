@@ -1,41 +1,34 @@
-$(document).ready(function() {
-    $('#selectForm').submit(function(e) {
+$(document).ready(function () {
+    $('#selectForm').submit(function (e) {
         console.log($('#selectForm').serializeArray().length);
         if ($('#selectForm').serializeArray().length === 0 || $('#selectForm').serializeArray().length !== 4) {
             alert('Please choose everything from the dropdown.');
             e.preventDefault();
         }
         var values = {};
-        $.each($('#selectForm').serializeArray(), function(i, field) {
+        $.each($('#selectForm').serializeArray(), function (i, field) {
             values[field.name] = field.value;
             console.log(values[field.name]);
         });
     });
-    $('#readMoreClose').click(function() {
+    $('#readMoreClose').click(function () {
         closeReadMore();
     });
-    $('#dropDown, #dropDownItem').mouseover(function() {
+    $('#dropDown, #dropDownItem').mouseover(function () {
         menuListOn();
     });
-    $('#dropDown, #dropDownItem').mouseout(function() {
+    $('#dropDown, #dropDownItem').mouseout(function () {
         menuListOff();
     });
-    $('#name_link').click(function() {
-        show_logout();
-    });
-    $('#name_link').focusout(function() {
-        hide_logout();
-    });
-
-    $('#title').change(function() {
+    $('#title').change(function () {
         countChars();
     });
 
-    $('#caption').change(function() {
+    $('#caption').change(function () {
         countCharsCaption();
     });
 
-    $('#selectFeatured').change(function() {
+    $('#selectFeatured').change(function () {
         if ($(this).val() === 'Yes') {
             $('#offer').show();
             $('#lblOffer').show();
@@ -45,7 +38,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#img').change(function() {
+    $('#img').change(function () {
         var filesize = this.files[0].size;
         if (filesize >= 2097152) {
             alert('File size should be less than 2 MB.');
@@ -55,7 +48,7 @@ $(document).ready(function() {
         }
     });
 
-    $("#deleteImage").change(function() {
+    $("#deleteImage").change(function () {
         if (this.checked) {
             $("#browseBtn").css({
                 'display': 'block'
@@ -66,10 +59,22 @@ $(document).ready(function() {
             });
         }
     });
-    $('#closeImage').click(function() {
+    $('#closeImage').click(function () {
         unloadImage();
     });
 
+    $('#showPopForm').click(function () {
+        loadForm();
+    });
+
+    $('#closeForm').click(function () {
+        unloadForm();
+    });
+
+    $("#reviewForm").submit(function (event) {
+        sendReview();
+        event.preventDefault();
+    });
 });
 
 function countCharsCaption() {
@@ -120,6 +125,7 @@ function validate(idArray) {
             return false;
         }
     }
+    return true;
 }
 
 function checkNull(idName) {
@@ -133,7 +139,7 @@ function checkNull(idName) {
 
 function show_flash(id) {
     $("#" + id).fadeIn('slow');
-    setInterval(function() {
+    setInterval(function () {
         $("#" + id).fadeOut('slow');
     }, 5000);
 }
@@ -141,7 +147,7 @@ function show_flash(id) {
 function showImg(img) {
     if (img.files && img.files[0]) {
         var reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             $('#imgLocation').attr('src', e.target.result);
         },
                 reader.readAsDataURL(img.files[0]);
@@ -191,14 +197,6 @@ function menuListOff() {
     });
 }
 
-function show_logout() {
-    $("#logout_box").fadeIn('slow');
-}
-
-function hide_logout() {
-    $("#logout_box").fadeOut('slow');
-}
-
 function loadImage(imageLoc) {
     $('#background').fadeIn();
     $('#fullImageWrap').fadeIn(600);
@@ -214,4 +212,74 @@ function unloadImage() {
     $("#imageFull").attr('src', '');
     $("#imageFull").attr('alt', '');
     unsetScrollPosition();
+}
+
+function loadForm(heading) {
+    $('#country').val('');
+    $("#background").fadeIn();
+    $("#feedsBg").fadeIn(600);
+    $("#popHead").html(heading);
+    if (heading === "Recommend Trip") {
+        $("#labelDesc").html("Recommend Trip:");
+        $("#lblVisited, #txtVisited").show();
+    } else if (heading === "Suggestion") {
+        $("#labelDesc").html("Suggestion:");
+        $("#lblVisited, #txtVisited").hide();
+    } else {
+        $("#labelDesc").html("Feedback:");
+        $("#lblVisited, #txtVisited").hide();
+    }
+    $("#reviewMail").val(heading);
+    setScrollPosition();
+}
+
+function unloadForm() {
+    $("#success").hide();
+    $("#sendError").hide();
+    $("#reviewForm").show();
+    $("#background").fadeOut(600);
+    $("#feedsBg").fadeOut();
+    $('#name').val('');
+    $('#email').val('');
+    $('#country').val('');
+    $('#desc').val('');
+    $("#departure").val('');
+    unsetScrollPosition();
+}
+
+function sendReview() {
+    $("#loading").show();
+    $("#reviewForm").hide();
+    if (validate(['name', 'country', 'email', 'desc'])) {
+        var url = $("#reviewForm").attr("url");
+        var name = $('#name').val();
+        var email = $('#email').val();
+        var country = $('#country').val();
+        var desc = $('#desc').val();
+        var visited = $("#departure").val();
+        var reviewMail = $("#reviewMail").val();
+        var dataString;
+        if (visited) {
+            dataString = 'name=' + name + '&email=' + email + '&country=' + country + '&desc=' + desc + '&reviewMail=' + reviewMail + '&visited=' + visited;
+        } else {
+            dataString = 'name=' + name + '&email=' + email + '&country=' + country + '&desc=' + desc + '&reviewMail=' + reviewMail;
+        }
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: dataString,
+            cache: false,
+            complete: function () {
+                $('#loading').hide();
+            },
+            success: function () {
+                $("#reivewForm").hide();
+                $("#success").show();
+            },
+            failure: function () {
+                $("#reivewForm").hide();
+                $("#sendError").show();
+            }
+        });
+    }
 }

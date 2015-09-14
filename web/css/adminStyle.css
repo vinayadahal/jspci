@@ -7,22 +7,25 @@ body {
     font-size:12px;
 }
 
-/*html{
-    background: url('../images/logo.png') no-repeat center center fixed;
-}*/
+#navigation{
+    margin: 0px;
+    background: #D9EDF7;
+    border-radius: 0px;
+    border:0px;
+    border-bottom: 1px solid #BCE8F1;
+}
 
-.headings {
-    border-radius:4px 4px 0 0;
-    background:#e00;
-    padding:8px;
-    font-weight:700;
-    color:#fff;
+#ulMenu li a{
+    outline: 0px;
 }
 
 .captionImg{
     background: #222;
     text-align: center;
     color: #FFF;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
 }
 
 .flash_data_ok,
@@ -55,22 +58,15 @@ body {
     transform:translate(-50%,-50%);
     width:450px;
     height:300px;
-    background:#E7E7E7;
     box-shadow:0 0 5px #aaa;
     border: none;
-}
-
-.input_wrap {
-    height:250px;
-    width:350px;
-    margin:0 auto;
 }
 
 .input_wrap input {
     margin-top:30px;
     border:1px solid #aaa;
     padding:5px;
-    height:40px;
+    height:35px;
     position:relative;
 }
 
@@ -83,18 +79,18 @@ body {
 
 .btn_login_override {
     outline:0;
-    padding:8px 50px;
-    background:#e00;
+    padding:5px 40px;
+    background:#428BCA;
     border:0;
     color:#fff;
     display:block;
-    margin:30px 0px;
+    margin:15px 0px;
 }
 
 .btn_login_override:hover,
 .btn_login_override:focus {
-    background:#222;
-    color:#fff;
+    background:#D9EDF7;
+    color:#3183B9;
 }
 
 .inner-addon {
@@ -103,7 +99,7 @@ body {
 
 .inner-addon .glyphicon {
     position:absolute;
-    padding:12px;
+    padding:10px;
     pointer-events:none;
 }
 
@@ -173,6 +169,34 @@ body {
     margin:0 auto;
 }
 
+.closeBtn{
+    float:right;
+    width: 20px;
+    height: 20px;
+    background: url('images/ui-icons_222222_256x240.png') no-repeat;
+    background-position: -95px -127px;
+}
+
+.closeBtn:hover{
+    cursor: pointer;
+    background: url('images/ui-icons_888888_256x240.png') no-repeat;
+    background-position: -95px -127px;
+}
+
+.popupWrap{
+    display: none;
+    width: 300px;
+    position: fixed;
+    left:50%;
+    top:50%;
+    margin-left: -180px;
+    margin-top: -100px;
+}
+
+.popupBox{
+    padding: 10px;
+}
+
 .close_btn,
 .close_btn:active,
 .close_btn:link {
@@ -240,9 +264,12 @@ body {
 }
 
 .nav_user_info {
-    color:#777;
     float:right;
     margin-top:15px;
+}
+
+#name_link{
+    outline: 0px;
 }
 
 .selectOverride {
@@ -263,12 +290,12 @@ body {
     margin:0 auto;
     border-left:10px solid transparent;
     border-right:10px solid transparent;
-    border-bottom:10px solid #e0e0e0;
+    border-bottom:10px solid #A9CDE7;
 }
 
 .logout_text {
     height:60px;
-    background:#e0e0e0;
+    background:#A9CDE7;
 }
 
 .logout_btns {
@@ -293,11 +320,39 @@ body {
     margin: 0;
 }
 
-.admin_site_center {
+.popupFormWrap{
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+}
+
+.popupForm,.pagesPopupFrom{
+    padding: 10px;
+    width: 550px;
+}
+
+.pagesPopupFrom{
+    height: 500px;
+    width: 1100px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.admin_site{
     position:fixed;
     left:50%;
     top:50%;
     transform:translate(-50%,-50%);
+}
+
+.admin_site_center,.admin_site_center_pages {
+    display:table;
+    width: 530px;
+}
+
+.admin_site_center_pages{
+    width: 1070px;
 }
 
 .admin_edit_center {
@@ -307,8 +362,8 @@ body {
 }
 
 .back_btn {
-    color:#e00;
-    font-size:25px;
+    color:#fff;
+    font-size:12px;
 }
 
 .back_btn:hover {
@@ -316,7 +371,6 @@ body {
 }
 
 .table_override_content {
-    margin-top:20px;
     width:1100px;
     color:#555;
 }
@@ -355,9 +409,24 @@ body {
     display:block;
 }
 
-.admin_edit_btn {
+.admin_add_btn {
     float:left;
     margin:10px 10px 10px 0;
+    border:none;
+    background:#090;
+    color:#fff;
+    padding:5px 20px;
+    border-radius:2px;
+    display:table-cell;
+}
+
+.admin_add_btn:hover {
+    background:#050;
+}
+
+.admin_edit_btn {
+    float:left;
+    margin:10px 10px 10px 0px;
     border:none;
     background:#e00;
     color:#fff;
@@ -367,7 +436,7 @@ body {
 }
 
 .admin_edit_btn:hover {
-    background:#222;
+    background:#500;
 }
 
 .das_icon {
@@ -375,13 +444,13 @@ body {
     height:128px;
     float:left;
     margin-right:10px;
-    border:1px solid #ccc;
+    border: 1px solid #D9EDF7;
     box-shadow:0 0 5px #ccc;
     text-align:center;
 }
 
 .das_icon:hover {
-    border:1px solid #aaa;
+    border:1px solid #A9CDE7;
 }
 
 .das_icon a {
@@ -401,21 +470,21 @@ body {
 }
 
 .glyphicon_list_override {
-    color:#f60;
+    color:#0a0;
     font-size:18px;
 }
 
 .glyphicon_list_override:hover {
-    color:#039;
+    color:#050;
 }
 
 .glyphicon_delete_override {
-    color:red;
+    color:#e00;
     font-size:19px;
 }
 
 .glyphicon_delete_override:hover {
-    color:#039;
+    color:#500;
 }
 
 .footerNormal {
@@ -432,35 +501,54 @@ body {
     text-align:center;
 }
 
-.iconSilder {
-    float:left;
-    width:207px;
-    background:#ccc;
+.img {
+    position: relative;
+    float: left;
+    width: 216px;
+    height: 100px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .sliderPreview {
-    width:209px;
+    position: relative;
+    width: 216px;
     height:auto;
     display: inline-block;
-    margin: 20px 10px 0px 0px;
+    margin: 3px 0px 0px 0px;
     border:1px solid #aaa;
     overflow:hidden;
     vertical-align: bottom;
 }
 
-.sliderPreview:nth-child(5){
-    margin-right: 0px;
+.sliderPreview:nth-child(5n+1){
+    margin-left: 3px;
 }
 
-.sliderPreview:nth-child(10){
-    margin-right: 0px;
-}
-
-
-.sliderPreview:hover {
-    border:1px solid #e8e8e8;
+.sliderPreview:hover .overlay{
     cursor:pointer;
-    opacity:.7;
+    opacity: 1;
+    display:block;
+}
+
+.overlay{
+    position:absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: rgba(0,0,0,0.75);
+    color:#fff;
+    display: none;
+}
+
+.overlayBtn{
+    color:#32abba;
+}
+
+.overlayBtn:hover{
+    color:#fff;
 }
 
 #browseBtn {
@@ -641,4 +729,26 @@ body {
 .jcrop-holder img,
 img.jcrop-preview {
     max-width:none;
+}
+
+.not-active-link{
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.6;
+}
+
+.loadingIcon{
+    text-align: center;
+    position: fixed;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+}
+
+.imageEditPanel{
+    border: 1px solid black;
+    width: 702px; 
+    float: left; 
+    display: table-cell; 
+    margin-right: 20px;
 }
