@@ -5,6 +5,7 @@ import system.RequestHandler;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import system.service.PostMapper;
 
 public class AdminController extends RequestHandler {
 
@@ -18,8 +19,11 @@ public class AdminController extends RequestHandler {
         return data;
     }
 
-    public void checkLogin() {
-
+    public void loginCheck() {
+        PostMapper postData = new PostMapper();
+        postData.Post("username");
+        postData.Post("password");
+        System.out.println("inside loginCheck...");
     }
 
 }

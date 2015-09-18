@@ -7,7 +7,7 @@
         <h4 class="panel-title">Login - ${subtitle}</h4>
     </div>
     <div class="panel-body input_wrap">
-        <form action="<?php echo baseUrl; ?>apanel/loginCheck" method="POST">
+        <form action="${pageContext.request.contextPath}/apanel/loginCheck" method="POST">
             <div class="inner-addon left-addon">
                 <input type="text" class="form-control form_override" name="username" placeholder="Username"/>
                 <i class="glyphicon glyphicon-user"></i>

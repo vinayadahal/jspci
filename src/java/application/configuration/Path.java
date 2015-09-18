@@ -9,7 +9,7 @@ public class Path extends Mapper {
         map.put("home", "HomeController/loadData");
         map.put("about", "AboutController/loadData");
         map.put("apanel/login", "AdminController/login");
-        map.put("apanel/checkLogin","AdminController/checkLogin");
+        map.put("apanel/loginCheck","AdminController/loginCheck");
     }
 
 }

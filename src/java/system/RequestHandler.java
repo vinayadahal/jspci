@@ -14,11 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import system.actions.RequestActions;
 import system.actions.RequestError;
+import system.service.PostMapper;
 
 public class RequestHandler extends HttpServlet {
 
     RequestActions action = new RequestActions();
     RequestError error = new RequestError();
+    PostMapper postData = new PostMapper();
 
     protected void processGet(HttpServletRequest request, HttpServletResponse response, Object data)
             throws ServletException, IOException {
@@ -38,12 +40,18 @@ public class RequestHandler extends HttpServlet {
 
     protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        System.out.println("inside processPost...");
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+//        for (String post : postData.post) {
+//            System.out.println("post:- " + post);
+//        }
+
+        System.out.println(postData.ObtainPostIndex().size());
         processPost(request, response);
     }
 
